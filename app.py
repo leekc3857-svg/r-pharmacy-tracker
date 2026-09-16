@@ -1,8 +1,14 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, send_file
 import sqlite3
 import os
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
+
+from flask import send_file
+
+@app.route('/api/backup-db')
+def backup_db():
+    return send_file('r_pharmacy.db', as_attachment=True)
 
 # Google Calendar API Imports
 from google.auth.transport.requests import Request
