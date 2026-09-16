@@ -42,7 +42,7 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
         <!-- Stat Cards Grid -->
@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <!-- Main Data Table (100% 还原最初 7 列布局) -->
+        <!-- Data Table -->
         <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
@@ -97,9 +97,9 @@
                         <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
                             <th class="py-3.5 px-4">DATE</th>
                             <th class="py-3.5 px-4">BRAND</th>
-                            <th class="py-3.5 px-4">AGENCY</th>
-                            <th class="py-3.5 px-4">MASTER CASE</th>
-                            <th class="py-3.5 px-4">SPLIT CASE</th>
+                            <th class="py-3.5 px-4">AGENCY CODE</th>
+                            <th class="py-3.5 px-4">MASTER CASE NO</th>
+                            <th class="py-3.5 px-4">MASTER DR NO</th>
                             <th class="py-3.5 px-4 text-right">BUDGET</th>
                             <th class="py-3.5 px-4 text-right">CLAIMED</th>
                             <th class="py-3.5 px-4 text-center">ACTIONS</th>
@@ -119,65 +119,83 @@
         </div>
     </main>
 
-    <!-- Modal Form (100% 还原最初输入字段) -->
-    <div id="modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-lg w-full overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                <h3 class="text-sm font-bold text-slate-900">Add New Promotion</h3>
+    <!-- 100% 精准对应你截图的 Modal 弹窗 -->
+    <div id="modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-xl w-full overflow-hidden p-6 space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-slate-900">New Promotion Record</h2>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 transition">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
-            <form id="promo-form" onsubmit="submitPromotion(event)" class="p-6 space-y-4">
+
+            <form id="promo-form" onsubmit="submitPromotion(event)" class="space-y-4">
+                <!-- Row 1: Date & Brand -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Date *</label>
-                        <input type="date" id="form-date" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Date</label>
+                        <input type="date" id="form-date" required class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Brand *</label>
-                        <input type="text" id="form-brand" required placeholder="e.g. Panadol" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Brand</label>
+                        <input type="text" id="form-brand" required placeholder="E.G. JORDAN" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                 </div>
 
+                <!-- Row 2: Agency Code & Budget Amount -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Agency</label>
-                        <input type="text" id="form-agency" placeholder="e.g. DKSH" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Agency Code</label>
+                        <input type="text" id="form-agency" placeholder="e.g. H03" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Master Case</label>
-                        <input type="text" id="form-master" placeholder="Master Case Ref" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Budget Amount (RM)</label>
+                        <input type="number" step="0.01" id="form-budget" placeholder="0.00" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                 </div>
 
+                <!-- Row 3: Description -->
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Split Case</label>
-                    <input type="text" id="form-split" placeholder="Split Case Details" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1.5">Description</label>
+                    <input type="text" id="form-description" placeholder="Promotion title and description" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                 </div>
 
+                <!-- Row 4: Master Case No & Master DR No -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Budget (RM)</label>
-                        <input type="number" step="0.01" id="form-budget" placeholder="0.00" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Master Case No</label>
+                        <input type="text" id="form-master-case" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Claimed (RM)</label>
-                        <input type="number" step="0.01" id="form-claimed" placeholder="0.00" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Master DR No</label>
+                        <input type="text" id="form-master-dr" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                 </div>
 
-                <div class="pt-4 flex justify-end gap-3 border-t border-slate-100">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-800 transition">Cancel</button>
-                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition">Save Promotion</button>
+                <!-- Row 5: Promotion Period Container -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                    <label class="block text-xs font-bold text-slate-700">Promotion Period</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="date" id="form-start-date" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <input type="date" id="form-end-date" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <!-- Footer Action Buttons -->
+                <div class="pt-4 flex justify-end gap-3">
+                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">Cancel</button>
+                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2.5 rounded-xl text-xs font-semibold transition shadow-sm">Save Record</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- JavaScript 兼容层逻辑 -->
+    <!-- JavaScript 完整数据打通逻辑 -->
     <script>
         let selectedBrand = '';
+
+        // 自动将 Date 默认设置为今天
+        document.getElementById('form-date').valueAsDate = new Date();
 
         function openModal() {
             document.getElementById('modal').classList.remove('hidden');
@@ -186,6 +204,7 @@
         function closeModal() {
             document.getElementById('modal').classList.add('hidden');
             document.getElementById('promo-form').reset();
+            document.getElementById('form-date').valueAsDate = new Date();
         }
 
         function filterBrand(brand) {
@@ -196,17 +215,23 @@
         async function submitPromotion(e) {
             e.preventDefault();
             
+            // 全全面面兼容后端 Python API 字段命名
             const payload = {
                 date: document.getElementById('form-date').value,
                 brand: document.getElementById('form-brand').value,
+                agency_code: document.getElementById('form-agency').value,
                 agency: document.getElementById('form-agency').value,
-                master_case: document.getElementById('form-master').value,
-                split_case: document.getElementById('form-split').value,
-                budget: parseFloat(document.getElementById('form-budget').value) || 0,
-                claimed: parseFloat(document.getElementById('form-claimed').value) || 0,
-                // 兼容可能存在的后端命名
                 budget_amount: parseFloat(document.getElementById('form-budget').value) || 0,
-                claimed_amount: parseFloat(document.getElementById('form-claimed').value) || 0
+                budget: parseFloat(document.getElementById('form-budget').value) || 0,
+                description: document.getElementById('form-description').value,
+                master_case_no: document.getElementById('form-master-case').value,
+                master_case: document.getElementById('form-master-case').value,
+                master_dr_no: document.getElementById('form-master-dr').value,
+                dr_number: document.getElementById('form-master-dr').value,
+                start_date: document.getElementById('form-start-date').value,
+                end_date: document.getElementById('form-end-date').value,
+                claimed_amount: 0,
+                claimed: 0
             };
 
             try {
@@ -255,18 +280,18 @@
                 } else {
                     emptyState.classList.add('hidden');
                     data.forEach(item => {
-                        const b = parseFloat(item.budget || item.budget_amount || 0);
-                        const c = parseFloat(item.claimed || item.claimed_amount || 0);
+                        const b = parseFloat(item.budget_amount || item.budget || 0);
+                        const c = parseFloat(item.claimed_amount || item.claimed || 0);
                         totalBudget += b;
                         totalClaimed += c;
 
                         const row = `
                             <tr class="hover:bg-slate-50/80 transition border-b border-slate-100">
-                                <td class="py-3.5 px-4 font-medium text-slate-500">${item.date || item.created_at || '-'}</td>
+                                <td class="py-3.5 px-4 font-medium text-slate-500">${item.date || '-'}</td>
                                 <td class="py-3.5 px-4 font-semibold text-slate-900">${item.brand || '-'}</td>
-                                <td class="py-3.5 px-4 text-slate-600">${item.agency || '-'}</td>
-                                <td class="py-3.5 px-4 text-slate-600">${item.master_case || item.master_case_no || '-'}</td>
-                                <td class="py-3.5 px-4 text-slate-600">${item.split_case || item.split_case_no || '-'}</td>
+                                <td class="py-3.5 px-4 text-slate-600">${item.agency_code || item.agency || '-'}</td>
+                                <td class="py-3.5 px-4 text-slate-600">${item.master_case_no || item.master_case || '-'}</td>
+                                <td class="py-3.5 px-4 text-slate-600">${item.master_dr_no || item.dr_number || '-'}</td>
                                 <td class="py-3.5 px-4 text-right font-medium text-slate-900">RM ${b.toFixed(2)}</td>
                                 <td class="py-3.5 px-4 text-right font-semibold text-emerald-600">RM ${c.toFixed(2)}</td>
                                 <td class="py-3.5 px-4 text-center">
