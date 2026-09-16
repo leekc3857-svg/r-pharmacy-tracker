@@ -14,7 +14,7 @@
 </head>
 <body class="bg-slate-50 min-h-screen text-slate-800 antialiased">
 
-    <!-- Top Navigation Header -->
+    <!-- Header Navigation -->
     <header class="bg-slate-900 border-b border-slate-800 text-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -36,20 +36,20 @@
                 </a>
                 <button onclick="openModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-xs font-semibold transition shadow-sm flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-                    New Promotion
+                    + New Promotion
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
-        <!-- Stat Cards Grid -->
+        <!-- Stat Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-start">
                 <div class="space-y-1">
-                    <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">Total Budget</span>
+                    <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">TOTAL BUDGET</span>
                     <div id="stat-total-budget" class="text-2xl font-bold text-slate-900">RM 0.00</div>
                 </div>
                 <div class="p-2.5 bg-slate-100 rounded-lg text-slate-600">
@@ -59,7 +59,7 @@
 
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-start">
                 <div class="space-y-1">
-                    <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">Total Claimed</span>
+                    <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">TOTAL CLAIMED</span>
                     <div id="stat-total-claimed" class="text-2xl font-bold text-emerald-600">RM 0.00</div>
                 </div>
                 <div class="p-2.5 bg-emerald-50 rounded-lg text-emerald-600 border border-emerald-100">
@@ -69,8 +69,8 @@
 
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-start">
                 <div class="space-y-1">
-                    <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">Promotions Count</span>
-                    <div id="stat-total-count" class="text-2xl font-bold text-slate-900">0</div>
+                    <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">PROMOTIONS COUNT</span>
+                    <div id="stat-total-count" class="text-2xl font-bold text-indigo-600">0</div>
                 </div>
                 <div class="p-2.5 bg-indigo-50 rounded-lg text-indigo-600 border border-indigo-100">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
@@ -80,7 +80,7 @@
 
         <!-- Filter Bar -->
         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-4 justify-between items-center">
-            <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+            <div id="brand-filters" class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
                 <button onclick="filterBrand('')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white shadow-sm">ALL BRANDS</button>
             </div>
             <div class="relative w-full sm:w-80">
@@ -89,17 +89,17 @@
             </div>
         </div>
 
-        <!-- Main Data Table -->
+        <!-- Data Table -->
         <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-50/80 border-b border-slate-200 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
-                            <th class="py-3.5 px-4">Date</th>
-                            <th class="py-3.5 px-4">Brand</th>
-                            <th class="py-3.5 px-4">Agency</th>
-                            <th class="py-3.5 px-4">Master Case</th>
-                            <th class="py-3.5 px-4">Split Case</th>
+                            <th class="py-3.5 px-4">Date / Brand</th>
+                            <th class="py-3.5 px-4">Description</th>
+                            <th class="py-3.5 px-4">Agency / DR</th>
+                            <th class="py-3.5 px-4">Master / Split Case</th>
+                            <th class="py-3.5 px-4">Invoice</th>
                             <th class="py-3.5 px-4 text-right">Budget</th>
                             <th class="py-3.5 px-4 text-right">Claimed</th>
                             <th class="py-3.5 px-4 text-center">Actions</th>
@@ -110,7 +110,6 @@
                 </table>
             </div>
 
-            <!-- Empty State Placeholder -->
             <div id="empty-state" class="hidden py-12 text-center space-y-3">
                 <div class="inline-flex p-3 bg-slate-100 rounded-full text-slate-400">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
@@ -120,9 +119,9 @@
         </div>
     </main>
 
-    <!-- New Promotion Modal (完整的弹窗界面) -->
+    <!-- Modal Form (完整还原所有真实字段) -->
     <div id="modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-lg w-full overflow-hidden">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-xl w-full overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                 <h3 class="text-sm font-bold text-slate-900">Add New Promotion</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 transition">
@@ -132,38 +131,57 @@
             <form id="promo-form" onsubmit="submitPromotion(event)" class="p-6 space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Date</label>
-                        <input type="date" id="form-date" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Brand *</label>
+                        <input type="text" id="form-brand" required placeholder="e.g. Panadol" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Brand</label>
-                        <input type="text" id="form-brand" placeholder="e.g. Panadol" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Agency</label>
                         <input type="text" id="form-agency" placeholder="e.g. DKSH" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Master Case</label>
-                        <input type="text" id="form-master" placeholder="Case Ref" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
-                    </div>
                 </div>
+
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Split Case</label>
-                    <input type="text" id="form-split" placeholder="Split details" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Description *</label>
+                    <input type="text" id="form-description" required placeholder="Promotion details" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                 </div>
+
                 <div class="grid grid-cols-2 gap-4">
                     <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">DR Number</label>
+                        <input type="text" id="form-dr" placeholder="DR No." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Invoice Number</label>
+                        <input type="text" id="form-invoice" placeholder="Invoice No." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Master Case No</label>
+                        <input type="text" id="form-master" placeholder="Master Case" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Split Case No</label>
+                        <input type="text" id="form-split" placeholder="Split Case" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Claim Due Date</label>
+                        <input type="date" id="form-due-date" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    </div>
+                    <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Budget (RM)</label>
-                        <input type="number" step="0.01" id="form-budget" placeholder="0.00" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        <input type="number" step="0.01" id="form-budget" placeholder="0.00" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Claimed (RM)</label>
                         <input type="number" step="0.01" id="form-claimed" placeholder="0.00" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                     </div>
                 </div>
+
                 <div class="pt-4 flex justify-end gap-3 border-t border-slate-100">
                     <button type="button" onclick="closeModal()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-800 transition">Cancel</button>
                     <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition">Save Promotion</button>
@@ -172,8 +190,10 @@
         </div>
     </div>
 
-    <!-- JavaScript 完整的交互逻辑 -->
+    <!-- JS Logic -->
     <script>
+        let selectedBrand = '';
+
         function openModal() {
             document.getElementById('modal').classList.remove('hidden');
         }
@@ -183,29 +203,42 @@
             document.getElementById('promo-form').reset();
         }
 
+        function filterBrand(brand) {
+            selectedBrand = brand;
+            fetchData();
+        }
+
         async function submitPromotion(e) {
             e.preventDefault();
             const payload = {
-                date: document.getElementById('form-date').value,
                 brand: document.getElementById('form-brand').value,
                 agency: document.getElementById('form-agency').value,
-                master_case: document.getElementById('form-master').value,
-                split_case: document.getElementById('form-split').value,
-                budget: parseFloat(document.getElementById('form-budget').value) || 0,
-                claimed: parseFloat(document.getElementById('form-claimed').value) || 0
+                description: document.getElementById('form-description').value,
+                dr_number: document.getElementById('form-dr').value,
+                invoice_number: document.getElementById('form-invoice').value,
+                master_case_no: document.getElementById('form-master').value,
+                split_case_no: document.getElementById('form-split').value,
+                claim_due_date: document.getElementById('form-due-date').value,
+                budget_amount: parseFloat(document.getElementById('form-budget').value) || 0,
+                claimed_amount: parseFloat(document.getElementById('form-claimed').value) || 0
             };
 
-            const res = await fetch('/api/promotions', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
+            try {
+                const res = await fetch('/api/promotions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
 
-            if (res.ok) {
-                closeModal();
-                fetchData();
-            } else {
-                alert('Failed to save promotion');
+                if (res.ok) {
+                    closeModal();
+                    fetchData();
+                } else {
+                    const err = await res.json();
+                    alert('Save failed: ' + (err.error || 'Server Error'));
+                }
+            } catch (err) {
+                alert('Network error, please try again.');
             }
         }
 
@@ -217,47 +250,65 @@
 
         async function fetchData() {
             const search = document.getElementById('search-input').value;
-            const res = await fetch(`/api/promotions?search=${encodeURIComponent(search)}`);
-            const data = await res.json();
-            
-            const tbody = document.getElementById('table-body');
-            const emptyState = document.getElementById('empty-state');
-            tbody.innerHTML = '';
+            let url = `/api/promotions?search=${encodeURIComponent(search)}`;
+            if (selectedBrand) url += `&brand=${encodeURIComponent(selectedBrand)}`;
 
-            let totalBudget = 0;
-            let totalClaimed = 0;
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                const tbody = document.getElementById('table-body');
+                const emptyState = document.getElementById('empty-state');
+                tbody.innerHTML = '';
 
-            if (data.length === 0) {
-                emptyState.classList.remove('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-                data.forEach(item => {
-                    totalBudget += (item.budget || 0);
-                    totalClaimed += (item.claimed || 0);
+                let totalBudget = 0;
+                let totalClaimed = 0;
 
-                    const row = `
-                        <tr class="hover:bg-slate-50/80 transition">
-                            <td class="py-3.5 px-4 font-medium text-slate-500">${item.date || '-'}</td>
-                            <td class="py-3.5 px-4 font-semibold text-slate-900">${item.brand || '-'}</td>
-                            <td class="py-3.5 px-4 text-slate-600">${item.agency || '-'}</td>
-                            <td class="py-3.5 px-4 text-slate-600">${item.master_case || '-'}</td>
-                            <td class="py-3.5 px-4 text-slate-600">${item.split_case || '-'}</td>
-                            <td class="py-3.5 px-4 text-right font-medium text-slate-900">RM ${(item.budget || 0).toFixed(2)}</td>
-                            <td class="py-3.5 px-4 text-right font-semibold text-emerald-600">RM ${(item.claimed || 0).toFixed(2)}</td>
-                            <td class="py-3.5 px-4 text-center">
-                                <button onclick="deleteRow(${item.id})" class="text-slate-400 hover:text-rose-600 p-1 transition">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                    tbody.insertAdjacentHTML('beforeend', row);
-                });
+                if (!data || data.length === 0) {
+                    emptyState.classList.remove('hidden');
+                } else {
+                    emptyState.classList.add('hidden');
+                    data.forEach(item => {
+                        const b = parseFloat(item.budget_amount || item.budget || 0);
+                        const c = parseFloat(item.claimed_amount || item.claimed || 0);
+                        totalBudget += b;
+                        totalClaimed += c;
+
+                        const row = `
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3.5 px-4">
+                                    <div class="font-semibold text-slate-900">${item.brand || '-'}</div>
+                                    <div class="text-[10px] text-slate-400">${item.claim_due_date || item.created_at || '-'}</div>
+                                </td>
+                                <td class="py-3.5 px-4 font-medium text-slate-700">${item.description || '-'}</td>
+                                <td class="py-3.5 px-4">
+                                    <div class="text-slate-700">${item.agency || '-'}</div>
+                                    <div class="text-[10px] text-slate-400">DR: ${item.dr_number || '-'}</div>
+                                </td>
+                                <td class="py-3.5 px-4">
+                                    <div class="text-slate-700">M: ${item.master_case_no || '-'}</div>
+                                    <div class="text-[10px] text-slate-400">S: ${item.split_case_no || '-'}</div>
+                                </td>
+                                <td class="py-3.5 px-4 text-slate-600">${item.invoice_number || '-'}</td>
+                                <td class="py-3.5 px-4 text-right font-medium text-slate-900">RM ${b.toFixed(2)}</td>
+                                <td class="py-3.5 px-4 text-right font-semibold text-emerald-600">RM ${c.toFixed(2)}</td>
+                                <td class="py-3.5 px-4 text-center">
+                                    <button onclick="deleteRow(${item.id})" class="text-slate-400 hover:text-rose-600 p-1 transition">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        tbody.insertAdjacentHTML('beforeend', row);
+                    });
+                }
+
+                document.getElementById('stat-total-budget').innerText = `RM ${totalBudget.toFixed(2)}`;
+                document.getElementById('stat-total-claimed').innerText = `RM ${totalClaimed.toFixed(2)}`;
+                document.getElementById('stat-total-count').innerText = data.length;
+            } catch (err) {
+                console.error('Fetch error:', err);
             }
-
-            document.getElementById('stat-total-budget').innerText = `RM ${totalBudget.toFixed(2)}`;
-            document.getElementById('stat-total-claimed').innerText = `RM ${totalClaimed.toFixed(2)}`;
-            document.getElementById('stat-total-count').innerText = data.length;
         }
 
         document.addEventListener('DOMContentLoaded', fetchData);
