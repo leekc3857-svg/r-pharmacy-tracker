@@ -160,6 +160,7 @@ scheduler.start()
 # =========================================================================
 
 @app.route('/')
+@app.route('/api/backup-db')
 def backup_db():
     return send_file('r_pharmacy.db', as_attachment=True)
     
@@ -371,7 +372,5 @@ def trigger_sync():
     success, msg = sync_due_claims_to_calendar()
     return jsonify({"success": success, "message": msg})
 
-# 把 app.py 最底部的代码改成这样：
 if __name__ == '__main__':
-    # 云端部署时不要在启动时强制调用本地浏览器授权
     app.run(host='0.0.0.0', debug=True, port=5000)
