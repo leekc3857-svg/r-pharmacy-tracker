@@ -160,6 +160,9 @@ scheduler.start()
 # =========================================================================
 
 @app.route('/')
+def backup_db():
+    return send_file('r_pharmacy.db', as_attachment=True)
+    
 def index():
     return send_from_directory('static', 'index.html')
 
