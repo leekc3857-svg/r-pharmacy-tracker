@@ -6,10 +6,6 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 from flask import send_file
 
-@app.route('/api/backup-db')
-def backup_db():
-    return send_file('r_pharmacy.db', as_attachment=True)
-
 # Google Calendar API Imports
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -164,6 +160,10 @@ scheduler.start()
 # =========================================================================
 # Web API 接口
 # =========================================================================
+
+@app.route('/api/backup-db')
+def backup_db():
+    return send_file('r_pharmacy.db', as_attachment=True)
 
 @app.route('/')
 def index():
@@ -375,11 +375,4 @@ def trigger_sync():
     return jsonify({"success": success, "message": msg})
 
 if __name__ == '__main__':
-    if os.path.exists('credentials.json') and not os.path.exists('token.json'):
-        print("🔑 正在检查并引导 Google Calendar 登录授权...")
-        try:
-            get_calendar_service()
-        except Exception as e:
-            print(f"授权引导捕获: {e}")
-            
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', debug=True, port=5000)
