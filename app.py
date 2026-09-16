@@ -160,12 +160,13 @@ scheduler.start()
 # =========================================================================
 
 @app.route('/')
+def index():
+    return send_from_directory('static', 'index.html')
+    
 @app.route('/api/backup-db')
 def backup_db():
     return send_file('r_pharmacy.db', as_attachment=True)
-    
-def index():
-    return send_from_directory('static', 'index.html')
+  
 
 @app.route('/api/promotions', methods=['GET'])
 def get_promotions():
